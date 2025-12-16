@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMtools | Construye tu Futuro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./modules/taildwindConfig.js"> </script>
+
+
+</head>
+<body class="text-gray-800 antialiased">
+
+    <div id="loader">
+        <div class="text-center">
+            <i data-lucide="settings" class="w-16 h-16 text-white animate-spin mx-auto mb-4"></i>
+            <h1 class="text-3xl font-display font-bold text-white tracking-widest">BMTOOLS</h1>
+        </div>
+    </div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent text-white py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    
+                    <span class="font-display font-bold text-2xl tracking-tighter group-hover:text-bm-accent transition-colors">BMtools</span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="font-medium hover:text-bm-accent transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-bm-accent after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Inicio</a>
+                        <a href="./catalogo.html" class="font-medium hover:text-bm-accent transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-bm-accent after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Catálogo</a>
+                        <a href="#nosotros" class="font-medium hover:text-bm-accent transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-bm-accent after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Nosotros</a>
+                        <a href="#contacto" class="font-medium hover:text-bm-accent transition-colors relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-bm-accent after:left-0 after:-bottom-1 after:transition-all hover:after:w-full">Contacto</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="p-2 hover:bg-white/10 rounded-full transition-colors">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button class="p-2 hover:bg-white/10 rounded-full transition-colors relative">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-bm-primary transform translate-x-1/4 -translate-y-1/4 bg-bm-accent rounded-full">0</span>
+                    </button>
+                    <button class="md:hidden p-2 hover:bg-white/10 rounded-full">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-bm-primary clip-diagonal">
+        
+        <div id="canvas-container"></div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-20 -left-20 w-96 h-96 bg-bm-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+            <div class="absolute inset-0 z-0" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 40px 40px;"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pt-20 flex flex-col md:flex-row items-center">
+            
+            <div class="w-full md:w-1/2 text-white mb-12 md:mb-0 space-y-6 gsap-fade-up pointer-events-none"> 
+                <div class="pointer-events-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                    <span class="w-2 h-2 rounded-full bg-bm-accent animate-pulse"></span>
+                    <span class="text-sm font-semibold tracking-wide uppercase">Nueva Colección 2025</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight pointer-events-auto">
+                    MAESTRÍA EN <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-bm-accent to-white">HERRAMIENTAS</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-300 max-w-lg leading-relaxed pointer-events-auto">
+                    Equipamiento de grado industrial para profesionales exigentes. Potencia, precisión y durabilidad en cada pieza de BMtools.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 pt-4 pointer-events-auto">
+                    <button class="group px-8 py-4 bg-bm-accent text-bm-primary font-bold rounded-lg shadow-lg hover:shadow-bm-accent/50 transition-all hover:-translate-y-1 flex items-center gap-2">
+                        Explorar Catálogo
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <button class="px-8 py-4 bg-transparent border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors backdrop-blur-sm">
+                        Ver Ofertas
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 flex justify-center perspective-1000 z-20">
+                <div id="tilt-card" class="hero-card relative w-full max-w-md aspect-square rounded-2xl preserve-3d cursor-pointer group">
+                    
+                    <div class="absolute inset-0 flex items-center justify-center transform translate-z-0 group-hover:translate-z-10 transition-transform duration-500">
+                        <div class="w-3/4 h-3/4 bg-bm-light/20 rounded-full blur-2xl"></div>
+                    </div>
+
+                    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Taladro Industrial" 
+                         class="absolute inset-0 w-full h-full object-contain transform translate-z-20 scale-110 drop-shadow-2xl z-20"
+                         style="transform: translateZ(50px);">
+
+                    <div class="absolute -top-10 -right-10 bg-white p-4 rounded-xl shadow-xl transform translate-z-30 animate-float z-30 flex items-center gap-3">
+                        <div class="bg-green-100 p-2 rounded-full">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Garantía</p>
+                            <p class="font-bold text-bm-primary">De por Vida</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-10 -left-10 bg-bm-dark p-4 rounded-xl shadow-xl transform translate-z-40 z-30 border border-white/10" style="animation: float 5s ease-in-out infinite reverse;">
+                        <div class="flex items-center gap-2">
+                            <span class="text-bm-accent font-display font-bold text-2xl">24V</span>
+                            <span class="text-gray-400 text-sm">Potencia<br>Turbo</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50 z-20">
+            <i data-lucide="chevrons-down" class="w-8 h-8"></i>
+        </div>
+    </header>
+
+    <section class="py-20 bg-white relative -mt-20 z-20 rounded-t-3xl shadow-[0_-20px_40px_rgba(0,0,0,0.05)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="gsap-feature p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-bm-primary/10 transition-all duration-300 border border-transparent hover:border-bm-light/20 group hover:-translate-y-2 relative overflow-hidden">
+                    
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-bm-accent/10 rounded-full blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:scale-150"></div>
+                    
+                    <div class="w-14 h-14 bg-bm-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-bm-primary group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 relative z-10">
+                        <i data-lucide="truck" class="w-7 h-7 text-bm-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bm-dark mb-2 relative z-10">Envío Ultra Rápido</h3>
+                    <p class="text-gray-500 relative z-10">Recibe tus herramientas en menos de 24 horas en zonas seleccionadas. El tiempo es dinero.</p>
+                </div>
+                
+
+                <div class="gsap-feature p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-bm-primary/10 transition-all duration-300 border border-transparent hover:border-bm-light/20 group hover:-translate-y-2 relative overflow-hidden">
+                    
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-bm-accent/10 rounded-full blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:scale-150"></div>
+
+                    <div class="w-14 h-14 bg-bm-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-bm-primary group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 relative z-10">
+                        <i data-lucide="award" class="w-7 h-7 text-bm-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bm-dark mb-2 relative z-10">Calidad Certificada</h3>
+                    <p class="text-gray-500 relative z-10">Todos nuestros productos pasan por rigurosas pruebas de estrés industrial ISO-9001.</p>
+                </div>
+                
+                <div class="gsap-feature p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-bm-primary/10 transition-all duration-300 border border-transparent hover:border-bm-light/20 group hover:-translate-y-2 relative overflow-hidden">
+                    
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-bm-accent/10 rounded-full blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:scale-150"></div>
+
+                    <div class="w-14 h-14 bg-bm-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-bm-primary group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 relative z-10">
+                        <i data-lucide="headphones" class="w-7 h-7 text-bm-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-bm-dark mb-2 relative z-10">Soporte Experto</h3>
+                    <p class="text-gray-500 relative z-10">No eres solo un cliente. Nuestro equipo de ingenieros está listo para asesorarte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+>
+    <section class="py-20 bg-gray-50" id="productos">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-bm-primary font-bold tracking-wider uppercase text-sm">Explora por Necesidad</span>
+                <h2 class="text-4xl font-display font-bold text-bm-dark mt-2">Categorías Principales</h2>
+                <div class="w-24 h-1 bg-bm-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg gsap-cat">
+                    <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Herramientas Eléctricas" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-bm-dark/90 via-bm-dark/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <i data-lucide="zap" class="text-bm-accent w-8 h-8 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"></i>
+                        <h3 class="text-white text-xl font-bold group-hover:text-bm-accent transition-colors">Eléctricas</h3>
+                        <p class="text-gray-300 text-sm mt-1 opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-300">Taladros, sierras y más.</p>
+                    </div>
+                </div>
+
+                <div class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg gsap-cat mt-0 lg:mt-12">
+                    <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Herramientas Manuales" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-bm-dark/90 via-bm-dark/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <i data-lucide="wrench" class="text-bm-accent w-8 h-8 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"></i>
+                        <h3 class="text-white text-xl font-bold group-hover:text-bm-accent transition-colors">Manuales</h3>
+                        <p class="text-gray-300 text-sm mt-1 opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-300">Llaves, martillos, sets.</p>
+                    </div>
+                </div>
+
+                <div class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg gsap-cat">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Seguridad Industrial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-bm-dark/90 via-bm-dark/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <i data-lucide="hard-hat" class="text-bm-accent w-8 h-8 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"></i>
+                        <h3 class="text-white text-xl font-bold group-hover:text-bm-accent transition-colors">Seguridad</h3>
+                        <p class="text-gray-300 text-sm mt-1 opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-300">Cascos, guantes, botas.</p>
+                    </div>
+                </div>
+
+                <div class="group relative h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg gsap-cat mt-0 lg:mt-12">
+                    <img src="https://www.demaquinasyherramientas.com/wp-content/uploads/2014/11/Bosch-Medidor-de-Distancia-La%CC%81ser-GLM-80.jpg" alt="Medición" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-bm-dark/90 via-bm-dark/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <i data-lucide="ruler" class="text-bm-accent w-8 h-8 mb-2 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"></i>
+                        <h3 class="text-white text-xl font-bold group-hover:text-bm-accent transition-colors">Medición</h3>
+                        <p class="text-gray-300 text-sm mt-1 opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-300">Láser, cintas, niveles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-bm-dark">Tendencias Semanales</h2>
+                    <p class="text-gray-500 mt-2">Los favoritos de los profesionales.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center text-bm-primary font-semibold hover:text-bm-accent transition-colors">
+                    Ver todo <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-2xl hover:border-bm-primary/20 transition-all duration-300 group product-card">
+                    <div class="relative p-6 bg-gray-50 rounded-t-xl overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-bm-accent text-bm-primary text-xs font-bold px-2 py-1 rounded">-15%</span>
+                        <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Taladro Impacto" class="w-full h-48 object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        <button class="absolute bottom-4 right-4 bg-bm-primary text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-bm-accent hover:text-bm-primary">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-gray-500 mb-1">Eléctricas</p>
+                        <h3 class="font-bold text-lg text-bm-dark mb-2 group-hover:text-bm-primary transition-colors">Taladro Percutor X200</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col">
+                                <span class="text-gray-400 line-through text-sm">$180.00</span>
+                                <span class="text-xl font-bold text-bm-primary">$153.00</span>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                ★★★★★
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-2xl hover:border-bm-primary/20 transition-all duration-300 group product-card">
+                    <div class="relative p-6 bg-gray-50 rounded-t-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Llave Inglesa" class="w-full h-48 object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        <button class="absolute bottom-4 right-4 bg-bm-primary text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-bm-accent hover:text-bm-primary">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-gray-500 mb-1">Manuales</p>
+                        <h3 class="font-bold text-lg text-bm-dark mb-2 group-hover:text-bm-primary transition-colors">Set Llaves ProChrom</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col">
+                                <span class="text-xl font-bold text-bm-primary">$45.00</span>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                ★★★★☆
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-2xl hover:border-bm-primary/20 transition-all duration-300 group product-card">
+                    <div class="relative p-6 bg-gray-50 rounded-t-xl overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">HOT</span>
+                        <img src="https://herramientaelectrica.mx/cdn/shop/files/Capturadepantalla2024-08-27135820.png?v=1724788886" alt="Sierra Circular" class="w-full h-48 object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        <button class="absolute bottom-4 right-4 bg-bm-primary text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-bm-accent hover:text-bm-primary">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-gray-500 mb-1">Corte</p>
+                        <h3 class="font-bold text-lg text-bm-dark mb-2 group-hover:text-bm-primary transition-colors">Sierra Circular 1200W</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col">
+                                <span class="text-xl font-bold text-bm-primary">$210.00</span>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                ★★★★★
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-2xl hover:border-bm-primary/20 transition-all duration-300 group product-card">
+                    <div class="relative p-6 bg-gray-50 rounded-t-xl overflow-hidden">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkXtfjEMN4xwXI_JwZsNonYXhOmXshD8uC3w&s" alt="Lijadora Orbital" class="w-full h-48 object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                        <button class="absolute bottom-4 right-4 bg-bm-primary text-white p-3 rounded-full shadow-lg opacity-0 transform translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-bm-accent hover:text-bm-primary">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-xs text-gray-500 mb-1">Acabados</p>
+                        <h3 class="font-bold text-lg text-bm-dark mb-2 group-hover:text-bm-primary transition-colors">Lijadora Orbital V3</h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex flex-col">
+                                <span class="text-xl font-bold text-bm-primary">$89.99</span>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                ★★★★☆
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-bm-primary relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl font-display font-bold text-white mb-4">Únete al Club de Profesionales</h2>
+            <p class="text-blue-200 mb-8 text-lg">Recibe ofertas exclusivas, consejos de mantenimiento y lanzamientos antes que nadie.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-300 focus:outline-none focus:bg-white/20 focus:border-bm-accent transition-all">
+                <button class="px-8 py-4 bg-bm-accent text-bm-primary font-bold rounded-lg hover:bg-white hover:text-bm-primary transition-colors shadow-lg shadow-bm-accent/20">
+                    Suscribirse
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-bm-dark text-white border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="hammer" class="w-6 h-6 text-bm-accent"></i>
+                        <span class="font-display font-bold text-2xl">BMtools</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Líderes en distribución de herramientas industriales y bricolaje. Potenciamos tus proyectos con calidad garantizada.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-white">Navegación</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Inicio</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Catálogo Completo</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Marcas</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Outlet</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-white">Soporte</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Centro de Ayuda</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Garantías</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Envíos y Devoluciones</a></li>
+                        <li><a href="#" class="hover:text-bm-accent transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-white">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-bm-accent"></i>
+                            Calle Industrial 123, CDMX
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-bm-accent"></i>
+                            +52 555 123 4567
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-bm-accent"></i>
+                            ventas@bmtools.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2025 BMtools. Todos los derechos reservados.</p>
+                <div class="flex gap-4">
+                    <div class="bg-bm-accent p-1.5 rounded transform group-hover:rotate-12 transition-transform">
+                        <i data-lucide="hammer" class="w-6 h-6 text-bm-primary"></i>
+                    </div>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./modules/home.js"> </script>
+</body>
+</html>
